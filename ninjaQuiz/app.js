@@ -6,7 +6,6 @@ const scoreBlock = document.querySelector('.scoreBlock')
 
 
 quizForm.addEventListener('submit', e => {
-  console.log(e)
   e.preventDefault()
   let score = 0;
   const userAnswers = [quizForm.q1.value, quizForm.q2.value, quizForm.q3.value, quizForm.q4.value]
@@ -31,6 +30,6 @@ quizForm.addEventListener('submit', e => {
     } else {
       output++
     }
-  }, 50)
+  }, 10)
   
 })
