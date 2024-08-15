@@ -1,6 +1,9 @@
 const correctAnswers = ['A','B','A','B']
 const quizForm = document.querySelector('.quiz-form')
 const quizLength = correctAnswers.length
+const final = document.querySelector('.score')
+const scoreBlock = document.querySelector('.scoreBlock')
+
 
 quizForm.addEventListener('submit', e => {
   console.log(e)
@@ -13,8 +16,21 @@ quizForm.addEventListener('submit', e => {
       score++
     }
   })
+
   score = (score / quizLength) * 100
-  console.log(`${score}%`)
 
+  scrollTo(0,0)
+  // final.innerText = `${score}%`
+  scoreBlock.classList.remove('d-none')
 
+  let output = 0
+  const timer = setInterval(() => {
+    final.innerText = `${output}%`
+    if(output === score){
+      clearInterval(timer)
+    } else {
+      output++
+    }
+  }, 50)
+  
 })
