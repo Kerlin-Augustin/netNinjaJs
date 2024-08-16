@@ -18,7 +18,7 @@ const getTodos = (resource) => {
     const request = new XMLHttpRequest();
 
     request.addEventListener('readystatechange', () => {
-      console.log(request, request.readyState)
+      // console.log(request, request.readyState)
       if (request.readyState === 4 && request.status === 200) {
         const data = JSON.parse(request.responseText)
         resolve(data)
@@ -32,11 +32,14 @@ const getTodos = (resource) => {
   })
 }
 
-getTodos('https://jsonplaceholder.typicode.com/todos/').then(data => {
-  console.log('promise resolves: ', data)
-}).catch(err => {
-  console.log('promise rejected: ', err)
-})
+// getTodos('https://jsonplaceholder.typicode.com/todos/').then(data => {
+//   console.log('promise resolves: ', data)
+//   return getTodos('todos.json')
+// }).then(data => {
+//   console.log('promise 2: ', data)
+// }).catch(err => {
+//   console.log('promise rejected: ', err)
+// })
 
 // getTodos('todos.json', (err, data) => {
 //   console.log(data)
@@ -58,3 +61,12 @@ getTodos('https://jsonplaceholder.typicode.com/todos/').then(data => {
 //   }).catch(err => {
 //     console.log(err)
 //   })
+
+fetch('https://jsonplaceholder.typicode.com/todos/').then((response) => {
+    console.log(response)
+    return response.json()
+}).then(data => {
+  console.log(data)
+}).catch((reject) => {
+  console.log(reject)
+})
