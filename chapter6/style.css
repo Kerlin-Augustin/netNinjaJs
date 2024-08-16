@@ -1,0 +1,12 @@
+div{
+  text-align: center;
+}
+.clock-block{
+  border: 1px solid black;
+  display: inline-block;
+  padding: 2em;
+}
+.clock{
+  text-align: center;
+  
+}
