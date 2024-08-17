@@ -1,5 +1,6 @@
 let apiKey = 'TCgtTE16utGbYMwXSABlrOyRygAt6AMV'
 
+// 2. When the promise object from the getCity funciton fires it gets sent here. This takes in the id number, turns it into a string and returns another promise object.
 const getWeather = async (id) => {
   const base = 'http://dataservice.accuweather.com/currentconditions/v1/'
   const query = `${id}?apikey=${apiKey}`
@@ -9,6 +10,8 @@ const getWeather = async (id) => {
 
   return data[0]
 }
+
+// 1. When you type in a city in the search bar it first gets passed into this functions city para technically. This returns a promise object in json format. 
 
 const getCity = async (city) => {
   try {

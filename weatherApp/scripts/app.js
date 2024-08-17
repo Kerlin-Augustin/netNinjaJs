@@ -34,6 +34,7 @@ const updateUI = (data) => {
 }
 
 async function updateCity(city) {
+  // 1. The city input gets passed into the getCity param. The return value of the getCity function gets saved into a variable called cityDets. This is an object. That object has a key-value on it that is then used on the getWeather function and saved into a variable called weather. Then updateCity returns the cityDets and weather variables into an object making an object with two objects.
   const cityDets = await getCity(city)
   const weather = await getWeather(cityDets.Key)
 
@@ -49,4 +50,14 @@ form.addEventListener('submit', e => {
     .then(data => updateUI(data))
     .catch(err => console.log(err))
 
+    // set local storage
+
+    localStorage.setItem('city', city)
+
 })
+
+if(localStorage.getItem('city')){
+  updateCity(localStorage.getItem('city'))
+    .then(data => updateUI(data))
+    .catch(err => console.log(err))
+}
