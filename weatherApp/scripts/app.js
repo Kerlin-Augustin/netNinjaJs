@@ -3,6 +3,7 @@ const card = document.querySelector('.card')
 const details = document.querySelector('.details')
 const time = document.querySelector('img.time')
 const icon = document.querySelector('.icon img')
+const forecast = new Forecast()
 
 const updateUI = (data) => {
 
@@ -33,20 +34,12 @@ const updateUI = (data) => {
 
 }
 
-async function updateCity(city) {
-  // 1. The city input gets passed into the getCity param. The return value of the getCity function gets saved into a variable called cityDets. This is an object. That object has a key-value on it that is then used on the getWeather function and saved into a variable called weather. Then updateCity returns the cityDets and weather variables into an object making an object with two objects.
-  const cityDets = await getCity(city)
-  const weather = await getWeather(cityDets.Key)
-
-  return { cityDets, weather }
-}
-
 form.addEventListener('submit', e => {
   e.preventDefault()
   const city = form.city.value.trim()
   form.reset()
 
-  updateCity(city)
+  forecast.updateCity(city)
     .then(data => updateUI(data))
     .catch(err => console.log(err))
 
@@ -57,7 +50,7 @@ form.addEventListener('submit', e => {
 })
 
 if(localStorage.getItem('city')){
-  updateCity(localStorage.getItem('city'))
+  forecast.updateCity(localStorage.getItem('city'))
     .then(data => updateUI(data))
     .catch(err => console.log(err))
 }
